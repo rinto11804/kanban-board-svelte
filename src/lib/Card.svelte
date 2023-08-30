@@ -7,7 +7,6 @@
     export let column;
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
     class="card"
 
@@ -18,7 +17,7 @@
         {content}
     </p>
 
-    <div class="tag">{tag + column}</div>
+    <div class="tag">{tag}</div>
 </div>
 
 <style>

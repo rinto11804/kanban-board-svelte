@@ -1,26 +1,18 @@
 <script>
-    import { cardState } from "../store";
-    import { dropzone } from "../util";
     import Card from "./Card.svelte";
+    import DropArea from "./DropArea.svelte";
     export let title;
     export let id;
     export let cards;
 </script>
 
-<section
-    class="column"
-    use:dropzone={{
-        on_dropzone(card_id) {
-            const card = cards.find((c) => c.id === card_id);
-            card.column = id;
-            $cardState = cards;
-        },
-    }}
->
+<section class="column">
     <h3>{title}</h3>
+    <DropArea column_id={id} />
     {#each cards as card (card.id)}
         {#if card.column === id}
             <Card {...card} />
+            <DropArea column_id={id} />
         {/if}
     {/each}
 </section>
@@ -34,13 +26,7 @@
         padding: 0.75rem;
         border-radius: 0.45rem;
         gap: 1rem;
-    }
-
-    .column:global(.droppable) {
-        outline: 0.1rem solid navajowhite;
-        outline-offset: 0.25rem;
-    }
-    .column:global(.droppable) * {
-        pointer-events: none;
+        min-height: 100%;
+        height: fit-content;
     }
 </style>

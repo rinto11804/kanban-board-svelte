@@ -1,9 +1,12 @@
 <script>
-
-    import { dragEnterColumn, draggingCard } from "../store";
-    import { getColumnID, moveCard } from "../util";
+    import { cardState } from "../store";
+    import { dropzone } from "../util";
 
     let visible = false;
+    /**
+     * @type {number}
+     */
+    export let column_id;
 
     function showArea() {
         visible = true;
@@ -12,36 +15,33 @@
     function hideArea() {
         visible = false;
     }
-
 </script>
 
 <div
-    class="{visible ? 'drop-active' : 'drop-hidden'} drop-area"
+    class="drop"
     on:dragenter={showArea}
     on:dragleave={hideArea}
-    on:drop={(e) => {
-        e.preventDefault();
-        console.log("Ares");
-        const columnID = getColumnID($dragEnterColumn);
-        moveCard(columnID, $draggingCard);
+    use:dropzone={{
+        on_dropzone(card_id) {
+            const card = $cardState.find((c) => c.id === card_id);
+            card.column = column_id;
+            $cardState = $cardState;
+        },
     }}
 />
 
 <style>
-    .drop-area {
+    .drop {
         background-color: #1e2e2e;
         height: 2rem;
         width: 100%;
         border-radius: 0.24rem;
-        transition: all 300ms ease-in-out;
+        transition: height 100ms ease-in-out;
+        opacity: 0;
     }
-    .drop-active {
+    .drop:global(.active) {
         background: #e1e2eef5;
         opacity: 1;
         height: 4rem;
-    }
-
-    .drop-hidden {
-        opacity: 0;
     }
 </style>

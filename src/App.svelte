@@ -1,14 +1,12 @@
 <script>
 	import Column from "./lib/Column.svelte";
 	import { cardState } from "./store";
-	const columns = ["💡To do", "⏳In progress", "✅Done"];
+	const columns = ["💡 To do", "⏳ In progress", "✅ Done"];
 </script>
 
 <main>
-
-	{#each columns as column,i (i)}
-	<Column title={column} cards={$cardState} id={i+1}/>
-		
+	{#each columns as column, i (i)}
+		<Column title={column} cards={$cardState} id={i + 1} />
 	{/each}
 </main>
 

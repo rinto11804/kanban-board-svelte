@@ -31,7 +31,7 @@ export function draggable(node, data) {
 export function dropzone(node,options){
   let state ={
     dropEffect:'move',
-    dragover_class:'droppable',
+    dragover_class:'active',
     ...options
   }
 
