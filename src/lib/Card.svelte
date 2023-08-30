@@ -1,27 +1,24 @@
 <script>
-    import { draggingCard, todos } from "../store";
-
+    import { draggable } from "../util";
     export let id;
     export let title;
     export let content;
     export let tag;
-    export let column_id;
+    export let column;
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
     class="card"
-    draggable="true"
-    on:dragstart={() => {
-        $draggingCard = id;
-    }}
+
+    use:draggable={id}
 >
     <h4>{title}</h4>
     <p>
         {content}
     </p>
 
-    <div class="tag">{tag}</div>
+    <div class="tag">{tag + column}</div>
 </div>
 
 <style>

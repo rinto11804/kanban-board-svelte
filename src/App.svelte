@@ -1,13 +1,15 @@
 <script>
 	import Column from "./lib/Column.svelte";
-	import { todos } from "./store";
+	import { cardState } from "./store";
 	const columns = ["💡To do", "⏳In progress", "✅Done"];
 </script>
 
 <main>
-	<Column title={columns[0]} id="1" cards={$todos} />
-	<Column title={columns[1]} id="2" cards={$todos} />
-	<Column title={columns[2]} id="3" cards={$todos} />
+
+	{#each columns as column,i (i)}
+	<Column title={column} cards={$cardState} id={i+1}/>
+		
+	{/each}
 </main>
 
 <style>
