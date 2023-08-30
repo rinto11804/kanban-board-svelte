@@ -1,29 +1,20 @@
 <script>
-    import { draggingCard } from "../store";
-
-    import { createEventDispatcher } from "svelte";
+    import { draggingCard, todos } from "../store";
 
     export let id;
     export let title;
     export let content;
     export let tag;
-
-    const dispatch = createEventDispatcher();
-
-    function onDrag() {
-        dispatch("Drag", {
-            tell: () => alert("Hello Drag"),
-        });
-    }
+    export let column_id;
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
     class="card"
     draggable="true"
-    on:dragstart={() => ($draggingCard = id)}
-    on:dragend={() => ($draggingCard = null)}
-    on:drag={onDrag}
+    on:dragstart={() => {
+        $draggingCard = id;
+    }}
 >
     <h4>{title}</h4>
     <p>
@@ -56,16 +47,12 @@
     }
 
     .card:active {
-        animation: 1s ease-in pluse;
+        animation: 1s infinite alternate-reverse linear pluse;
     }
 
     @keyframes pluse {
         to {
-            opacity: 1;
-        }
-
-        from {
-            opacity: 0.4;
+            opacity: 0.5;
         }
     }
 

@@ -1,5 +1,8 @@
 <script>
 
+    import { dragEnterColumn, draggingCard } from "../store";
+    import { getColumnID, moveCard } from "../util";
+
     let visible = false;
 
     function showArea() {
@@ -16,6 +19,12 @@
     class="{visible ? 'drop-active' : 'drop-hidden'} drop-area"
     on:dragenter={showArea}
     on:dragleave={hideArea}
+    on:drop={(e) => {
+        e.preventDefault();
+        console.log("Ares");
+        const columnID = getColumnID($dragEnterColumn);
+        moveCard(columnID, $draggingCard);
+    }}
 />
 
 <style>
@@ -24,7 +33,7 @@
         height: 2rem;
         width: 100%;
         border-radius: 0.24rem;
-        transition: all 500ms ease-in-out;
+        transition: all 300ms ease-in-out;
     }
     .drop-active {
         background: #e1e2eef5;

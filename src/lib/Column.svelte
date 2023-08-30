@@ -1,16 +1,25 @@
 <script>
+    import { dragEnterColumn, dragLeaveColumn } from "../store";
     import Card from "./Card.svelte";
     import DropArea from "./DropArea.svelte";
     export let title;
+    export let id;
     export let cards;
 </script>
 
-<section class="column">
+<section
+    class="column"
+    on:dragenter={() => ($dragEnterColumn = title)}
+    on:dragleave={() => ($dragLeaveColumn = title)}
+  
+>
     <h3>{title}</h3>
     <DropArea />
     {#each cards as card (card.id)}
-        <Card {...card}/>
-        <DropArea />
+        {#if id === card.column_id}
+            <Card {...card} />
+            <DropArea />
+        {/if}
     {/each}
 </section>
 
