@@ -1,5 +1,6 @@
 <script>
-    import { cardState } from "../store";
+    import { cardState, loadCards } from "../store";
+    import { supabase } from "../superbase";
     import { dropzone } from "../util";
 
     let visible = false;
@@ -7,25 +8,20 @@
      * @type {number}
      */
     export let column_id;
-
-    function showArea() {
-        visible = true;
-    }
-
-    function hideArea() {
-        visible = false;
-    }
 </script>
 
 <div
     class="drop"
-    on:dragenter={showArea}
-    on:dragleave={hideArea}
     use:dropzone={{
-        on_dropzone(card_id) {
-            const card = $cardState.find((c) => c.id === card_id);
-            card.column = column_id;
-            $cardState = $cardState;
+        async on_dropzone(card_id) {
+            const { error } = await supabase
+                .from("cards")
+                .update({ column: column_id })
+                .eq("id", card_id);
+            if (error) {
+                console.log(error);
+            }
+            loadCards();
         },
     }}
 />

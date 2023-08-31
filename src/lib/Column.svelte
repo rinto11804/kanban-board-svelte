@@ -21,7 +21,7 @@
     <DropArea column_id={id} />
     {#each cards as card (card.id)}
         {#if card.column === id}
-            <Card {...card} />
+            <Card id={card.id} title={card.title} content={card.content} tag={card.tag} />
             <DropArea column_id={id} />
         {/if}
     {/each}

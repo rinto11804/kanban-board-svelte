@@ -4,8 +4,6 @@ export function createId() {
 
 function addCard(column_id,title,content){}
 
-
-
 export function draggable(node, data) {
   let state = data
   node.draggable = true;

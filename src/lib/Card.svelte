@@ -4,7 +4,6 @@
     export let title;
     export let content;
     export let tag;
-    export let column;
 </script>
 
 <div

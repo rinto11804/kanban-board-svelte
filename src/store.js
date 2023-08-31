@@ -1,50 +1,20 @@
 import { writable } from "svelte/store";
-import { createId } from "./util";
+import { supabase } from "./superbase";
+
+export const cardState = writable(null);
 
 
-export const cardState = writable(
-    [
-		{
-			id: createId(),
-			column:1,
-			title: "Idea 1",
-			content: "Take a tour to the blackhole",
-			tag: "Space",
-		},
-		{
-			id: createId(),
-			column:3,
-			title: "Idea 2",
-			content: "Take a tour to the volcano",
-			tag: "Lava",
-		},
-		{
-			id: createId(),
-			column:2,
-			title: "Idea 1",
-			content: "Take a tour to the blackhole",
-			tag: "Space",
-		},
-		{
-			id: createId(),
-			column:1,
-			title: "Idea 2",
-			content: "Take a tour to the volcano",
-			tag: "Lava",
-		},
-		{
-			id: createId(),
-			column:2,
-			title: "Idea 1",
-			content: "Take a tour to the blackhole",
-			tag: "Space",
-		},
-		{
-			id: createId(),
-			column:1,
-			title: "Idea 2",
-			content: "Take a tour to the volcano",
-			tag: "Lava",
-		},
-	]
-)
+export async function loadCards(){
+	const {data , error} = await supabase.from('cards').select();
+	if(error){
+		return console.log(error)
+	}
+	cardState.set(data);
+}
+
+export async function addCard(){
+	const {data , error} = await supabase.from('cards').insert([{title:'The Black Hole',content:'A tour to black hole',tag:'Space',column:3}]).select();
+	if(error){
+		return console.log(error)
+	}	
+}

@@ -1,13 +1,18 @@
 <script>
+	import { onMount } from "svelte";
 	import Column from "./lib/Column.svelte";
-	import { cardState } from "./store";
+	import { cardState, loadCards } from "./store";
 	const columns = ["💡 To do", "⏳ In progress", "✅ Done"];
+
+	$:console.log($cardState);
 </script>
 
 <main>
-	{#each columns as column, i (i)}
-		<Column title={column} cards={$cardState} id={i + 1} />
-	{/each}
+	{#await loadCards() then _}
+		{#each columns as column, i (i)}
+			<Column title={column} cards={$cardState} id={i + 1} />
+		{/each}
+	{/await}
 </main>
 
 <style>
