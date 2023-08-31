@@ -9,7 +9,6 @@
 
 <div
     class="card"
-
     use:draggable={id}
 >
     <h4>{title}</h4>

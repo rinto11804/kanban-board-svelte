@@ -40,7 +40,7 @@
         opacity: 0;
     }
     .drop:global(.active) {
-        background: #e1e2eef5;
+        background: rgba(225, 226, 238, 0.261);
         opacity: 1;
         height: 4rem;
     }

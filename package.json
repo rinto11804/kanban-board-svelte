@@ -14,6 +14,6 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "svelte-dnd-action": "^0.9.26"
+    "@supabase/supabase-js": "^2.33.1"
   }
 }

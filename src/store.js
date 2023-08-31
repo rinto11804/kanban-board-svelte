@@ -1,8 +1,6 @@
 import { writable } from "svelte/store";
 import { createId } from "./util";
 
-export const draggingCard = writable(null);
-export const dragEnterColumn = writable(null);
 
 export const cardState = writable(
     [

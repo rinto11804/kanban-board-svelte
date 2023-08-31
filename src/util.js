@@ -1,11 +1,11 @@
 export function createId() {
   return `id_${Math.floor(Math.random() * 1000)}`;
 }
-/**
- * 
- * @param {HTMLElement} node 
- * @param {string} data 
- */
+
+function addCard(column_id,title,content){}
+
+
+
 export function draggable(node, data) {
   let state = data
   node.draggable = true;

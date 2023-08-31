@@ -14,8 +14,9 @@
 	main {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
+		place-items: center;
 		gap: 4rem;
-		height: 80vh;
+		height: 90vh;
 		margin: 2rem;
 	}
 </style>
