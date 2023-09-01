@@ -32,7 +32,8 @@
     }
 
     .tag {
-        background-color: #945;
+        background-color: #5c3cce69;
+        outline:2px solid #5c3ccef8 ;
         padding-inline: 1rem;
         padding-block: 0.3rem;
         font-size: 0.7rem;

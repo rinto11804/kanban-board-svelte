@@ -1,4 +1,5 @@
 <script>
+    import { openModal, selectedColumn } from "../store";
     import Card from "./Card.svelte";
     import DropArea from "./DropArea.svelte";
     export let title;
@@ -9,7 +10,13 @@
 <section class="column">
     <div class="column-header">
         <h3>{title}</h3>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <svg
+            on:click={() => {
+                $openModal = true;
+                $selectedColumn = id;
+            }}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             fill="white"
@@ -21,7 +28,12 @@
     <DropArea column_id={id} />
     {#each cards as card (card.id)}
         {#if card.column === id}
-            <Card id={card.id} title={card.title} content={card.content} tag={card.tag} />
+            <Card
+                id={card.id}
+                title={card.title}
+                content={card.content}
+                tag={card.tag}
+            />
             <DropArea column_id={id} />
         {/if}
     {/each}
