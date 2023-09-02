@@ -1,7 +1,7 @@
 <script>
-	import Model from "./Model.svelte";
 	import Column from "./lib/Column.svelte";
-	import { cardState, loadCards, openModal } from "./store";
+    import Modal from "./lib/Modal.svelte";
+	import { cardState, loadCards } from "./store";
 	const columns = ["💡 To do", "⏳ In progress", "✅ Done"];
 </script>
 
@@ -11,7 +11,7 @@
 			<Column title={column} cards={$cardState} id={i + 1} />
 		{/each}
 	{/await}
-	<Model/>
+	<Modal/>
 </main>
 
 <style>

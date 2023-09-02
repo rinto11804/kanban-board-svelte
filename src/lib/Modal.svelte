@@ -1,5 +1,5 @@
 <script>
-    import { addCard, openModal, selectedColumn } from "./store";
+    import { addCard, openModal, selectedColumn } from "../store";
 
     let dialog;
 
