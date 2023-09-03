@@ -93,6 +93,7 @@
     }
 
     input {
+        appearance: none;
         font-family: inherit;
         background-color: transparent;
         border-color: var(--border);

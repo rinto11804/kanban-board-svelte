@@ -9,16 +9,15 @@
 	const columns = ["💡 To do", "⏳ In progress", "✅ Done"];
 
 	onMount(async () => {
-		const { data, error } = await supabase.auth.getSession();
-		if(error){
-			console.log(error);
-		}
-		if (error === null && data.session !== null) {
-			$user_id = data.session.user.id;
-			$isLoginPage = false;
-		} else {
-			$isLoginPage = true;
-		}
+		supabase.auth.onAuthStateChange((event, session) => {
+			if (event === "SIGNED_IN") {
+				$user_id = session.user.id;
+				$isLoginPage = false;
+			}
+			if (event === "SIGNED_OUT") {
+				$isLoginPage = true;
+			}
+		});
 	});
 </script>
 

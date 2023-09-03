@@ -40,6 +40,11 @@ export async function addCard({ title, content, tag, column_id, user_id }) {
 	await loadCards();
 }
 
+export async function deleteCard(card_id){
+	const {error} = await supabase.from('cards').delete().eq("id",card_id);
+	await loadCards();
+}
+
 
 export async function loadCards() {
 	const { data, error } = await supabase.from('cards').select();
