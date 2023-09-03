@@ -1,6 +1,6 @@
 <script>
-    import { cardState, loadCards } from "../store";
-    import { superbase } from "../superbase";
+    import { loadCards } from "../store";
+    import { supabase } from "../superbase";
     import { dropzone } from "../util";
 
     /**
@@ -13,7 +13,7 @@
     class="drop"
     use:dropzone={{
         async on_dropzone(card_id) {
-            const { error } = await superbase
+            const { error } = await supabase
                 .from("cards")
                 .update({ column: column_id })
                 .eq("id", card_id);

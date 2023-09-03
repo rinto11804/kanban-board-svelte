@@ -23,8 +23,6 @@
 }
 
 
-body {}
-
 #app {
     display: flex;
     place-content: center;

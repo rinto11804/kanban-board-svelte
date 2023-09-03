@@ -4,13 +4,15 @@
 	import Login from "./lib/Login.svelte";
 	import Modal from "./lib/Modal.svelte";
 	import { cardState, isLoginPage, loadCards, user_id } from "./store";
-	import { superbase } from "./superbase";
 	import Navbar from "./lib/Navbar.svelte";
+	import { supabase } from "./superbase";
 	const columns = ["💡 To do", "⏳ In progress", "✅ Done"];
 
 	onMount(async () => {
-		const { data, error } = await superbase.auth.getSession();
-		console.log(data);
+		const { data, error } = await supabase.auth.getSession();
+		if(error){
+			console.log(error);
+		}
 		if (error === null && data.session !== null) {
 			$user_id = data.session.user.id;
 			$isLoginPage = false;
