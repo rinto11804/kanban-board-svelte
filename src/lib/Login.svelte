@@ -14,9 +14,9 @@
         <p>Enter your email and password</p>
     </div>
     <form
-        on:submit|preventDefault={(e) => {
+        on:submit|preventDefault={async (e) => {
             if (!isFieldEmpty) {
-                error = loginUser({ email, password });
+                error = await loginUser({ email, password });
                 email = "";
                 password = "";
             }

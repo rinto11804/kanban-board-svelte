@@ -25,7 +25,12 @@
 
 body {}
 
-#app {}
+#app {
+    display: flex;
+    place-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
 
 button {
     border-radius: var(--radius);

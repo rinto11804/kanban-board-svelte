@@ -1,5 +1,5 @@
 <script>
-    import { addCard, openModal, selectedColumn } from "../store";
+    import { addCard, openModal, selectedColumn, user_id } from "../store";
 
     let dialog;
 
@@ -51,6 +51,7 @@
             <!-- svelte-ignore a11y-autofocus -->
             <button
                 type="submit"
+                autofocus
                 on:click={() => {
                     if (title !== "" && content !== "" && tag !== "") {
                         addCard({
@@ -58,6 +59,7 @@
                             content,
                             tag,
                             column_id: $selectedColumn,
+                            user_id:$user_id,
                         });
                         title = "";
                         content = "";
@@ -66,7 +68,7 @@
                         closeModel();
                     }
                 }}
-                autofocus>Submit</button
+            >Submit</button
             >
         </div>
     </form>

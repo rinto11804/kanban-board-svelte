@@ -5,7 +5,7 @@ export const cardState = writable(null);
 export const openModal = writable(false);
 export const selectedColumn = writable(null);
 export const isLoginPage = writable(true);
-export const user = writable(null);
+export const user_id = writable(null);
 
 /**
  * @param {{ email: string; password: string; }} formData
@@ -18,15 +18,23 @@ export async function loginUser(formData) {
 
 	if (error) {
 		return error.message;
-	} else {
-		user.set(data)
+	} 
+	if(data.session !== null) {
+		user_id.set(data.user.id)
 		isLoginPage.set(false);
 	}
 }
 
+export async function signOut(){
+	const { error } = await superbase.auth.signOut()
+	isLoginPage.set(true)
+	if (error){
+		console.log(error);
+	}
+}
 
-export async function addCard({ title, content, tag, column_id }) {
-	const { error } = await superbase.from('cards').insert([{ title, content, tag, column: column_id }]);
+export async function addCard({ title, content, tag, column_id, user_id }) {
+	const { error } = await superbase.from('cards').insert([{ title, content, tag, column: column_id, user_id }]);
 	if (error) {
 		console.log(error)
 	}
